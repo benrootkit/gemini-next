@@ -54,6 +54,7 @@ export default {
   'common.table.env': '环境',
   'common.table.db_type': 'DB类型',
   'common.table.source': '数据源',
+  'common.table.source_batch': '数据源批量',
   'common.table.schema': '数据库',
   'common.table.table': '数据表',
   'common.table.max': '影响行数',
