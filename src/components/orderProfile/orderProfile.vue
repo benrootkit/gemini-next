@@ -145,19 +145,24 @@
             </a-row>
           </a-tab-pane>
 
-          <a-tab-pane key="2" :tab="$t('order.profile.comment')" force-render>
+          <a-tab-pane key="2" :tab="$t('order.profile.source')" force-render>
+            <br />
+
+          </a-tab-pane>
+
+          <a-tab-pane key="3" :tab="$t('order.profile.comment')" force-render>
             <br />
             <a-card size="small">
               <Comment :work-id="order.work_id"></Comment>
             </a-card>
           </a-tab-pane>
-          <a-tab-pane key="3" :tab="$t('order.profile.results')">
+          <a-tab-pane key="4" :tab="$t('order.profile.results')">
             <Results :work-id="order.work_id" :status="order.status"></Results>
           </a-tab-pane>
 
           <a-tab-pane
             v-if="order.type === 0"
-            key="4"
+            key="5"
             :tab="$t('order.profile.osc')"
           >
             <br />

@@ -69,6 +69,8 @@ export interface OrderItem {
   backup: number;
   sql?: string;
   relevant: string[];
+  source_list: string[];
+  source_id_list: string[];
 }
 
 export interface SQLTesting {

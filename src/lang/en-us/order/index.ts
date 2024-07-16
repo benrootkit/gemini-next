@@ -6,6 +6,7 @@ export default {
   'order.profile.timing': 'Schedule',
   'order.profile.profile': 'Profile',
   'order.profile.comment': 'Comment',
+  'order.profile.source': 'Source',
   'order.profile.osc': 'OSC Process',
   'order.profile.results': 'Results',
   'order.profile.flow': 'Flow Info',

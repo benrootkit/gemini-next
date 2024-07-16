@@ -56,6 +56,7 @@ export default {
   'common.table.env': 'Env',
   'common.table.db_type': 'DB Type',
   'common.table.source': 'Source',
+  'common.table.source_batch': 'Source Batch',
   'common.table.schema': 'Schema',
   'common.table.table': 'Table',
   'common.table.max': 'Max affected',

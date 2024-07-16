@@ -6,6 +6,7 @@ export default {
   'order.profile.timing': '定时执行',
   'order.profile.profile': '详情',
   'order.profile.comment': '评论',
+  'order.profile.source': '数据源',
   'order.profile.results': '结果',
   'order.profile.osc': 'OSC进度',
   'order.profile.flow': '流程信息',
