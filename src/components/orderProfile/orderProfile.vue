@@ -363,10 +363,6 @@
     {
       title: '数据源',
       dataIndex: 'source',
-    },
-    {
-      title: '执行结果',
-      dataIndex: 'exec_result',
-    },
+    }
   ];
 </script>
