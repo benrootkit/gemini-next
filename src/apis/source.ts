@@ -11,6 +11,14 @@ export interface Timeline {
   type: number;
 }
 
+export interface ExtBatchSource {
+  id: number;
+  work_id: string;
+  source: string;
+  source_id: string;
+  exec_result: string;
+}
+
 export interface TableArch {
   source?: string;
   data_base: string;
@@ -78,6 +86,14 @@ export function queryTimeline(source_id: string, work_id: string) {
   return request.get<Res<Timeline[]>>(`${COMMON_URI}/fetch/timeline`, {
     params: {
       source_id: source_id,
+      work_id: work_id,
+    },
+  });
+}
+
+export function queryBatchSource(work_id: string) {
+  return request.get<Res<ExtBatchSource[]>>(`${COMMON_URI}/fetch/batch_source`, {
+    params: {
       work_id: work_id,
     },
   });

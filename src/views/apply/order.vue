@@ -23,10 +23,15 @@
           </a-form-item>
 
           <a-form-item :label="$t('common.table.source_batch')">
-            <span>{{ selectedSources }}</span>
-            <a-button @click="showSourceBatch">
+            <a-button @click="showSourceBatch" style="margin-left: 10px">
               选择
             </a-button>
+
+            <div style="max-height: 250px;overflow-y: scroll">
+              <span>{{ selectedSources }}</span>
+            </div>
+
+
           </a-form-item>
 
           <a-form-item :label="$t('common.table.schema')" name="data_base">
@@ -486,11 +491,11 @@ onUnmounted(() => {
 
 const columns = [
   {
-    title: 'Source',
+    title: '数据源',
     dataIndex: 'source',
   },
   {
-    title: 'Source id',
+    title: '数据源id',
     dataIndex: 'source_id',
   },
 ];
@@ -498,7 +503,6 @@ const columns = [
 const open = ref<boolean>(false);
 const datasourceList = ref([] as ISource[]);
 const selectedSources = ref("");
-
 
 const fetchSource = async () => {
   const {data} = await querySourceList("ddl");

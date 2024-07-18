@@ -147,7 +147,11 @@
 
           <a-tab-pane key="2" :tab="$t('order.profile.source')" force-render>
             <br />
-
+            <a-table :columns="columns"
+                     :data-source="batchSourceList"
+                     :pagination="false"
+                     row-key="source"
+            />
           </a-tab-pane>
 
           <a-tab-pane key="3" :tab="$t('order.profile.comment')" force-render>
@@ -203,7 +207,7 @@
   import { useRoute } from 'vue-router';
   import JunoMixin from '@/mixins/juno';
   import { debounce } from 'lodash-es';
-  import { queryTimeline } from '@/apis/source';
+  import { queryTimeline,queryBatchSource } from '@/apis/source';
   import { useWebSocket } from '@vueuse/core';
   import { COMMON_URI } from '@/config/request';
   import editor from '@/components/editor/editor.vue';
@@ -244,6 +248,8 @@
   const isCurrent = ref(-1);
 
   const condition = ref(false);
+
+  const batchSourceList = ref([]);
 
   const handleVisibleChange = (bool: boolean) => {
     if (enabled.value) {
@@ -345,5 +351,22 @@
 
     sqls.value = sql.data.payload.sqls;
     store.commit('common/ORDER_SET_SQL', sql.data.payload.sqls);
+
+    //batch
+    const batchSourceListResponse = await queryBatchSource(order.value.work_id);
+    batchSourceList.value = batchSourceListResponse.data.payload;
   });
+
+
+
+  const columns = [
+    {
+      title: '数据源',
+      dataIndex: 'source',
+    },
+    {
+      title: '执行结果',
+      dataIndex: 'exec_result',
+    },
+  ];
 </script>
