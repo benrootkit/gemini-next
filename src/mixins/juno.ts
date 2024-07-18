@@ -80,6 +80,8 @@ export default function () {
     source_id: '',
     relevant: [] as string[],
     work_id: '',
+    source_list: [] as string[],
+    source_id_list: [] as string[],
   });
 
   return {

@@ -129,7 +129,7 @@
       message.warning(t('order.roll.tips'));
       return;
     }
-    await userPostOrder(wrapper as OrderItem);
+    await userPostOrder(wrapper as unknown as OrderItem);
     router.go(-1);
   };
 
