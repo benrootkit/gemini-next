@@ -67,6 +67,11 @@
   const resultTable = reactive<tableRef>({
     col: [
       {
+        title: t('common.table.source'),
+        dataIndex: 'source',
+        ellipsis: true,
+      },
+      {
         title: t('common.table.sql'),
         dataIndex: 'sql',
         ellipsis: true,
