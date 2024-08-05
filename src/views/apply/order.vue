@@ -174,14 +174,24 @@
   </a-row>
 
   <div>
-    <a-modal v-model:visible="open" title="选择数据源" @ok="handleOk">
-      <a-table :columns="columns"
-               :data-source="datasourceList"
-               :pagination="false"
-               row-key="source"
-               :row-selection="rowSourceSelection"
-      />
+    <a-modal v-model:visible="open" title="选择数据源" @ok="handleSourceSelect">
+      <div style="margin-bottom: 20px">
+        <span>数据源: </span>
+        <a-space>
+          <a-input v-model:value="searchValue"/>
+          <a-button @click="handleSourceSearch">搜索</a-button>
+        </a-space>
+      </div>
+      <div style="max-height: 500px;overflow-y: scroll">
+        <a-table :columns="columns"
+                 :data-source="datasourceList"
+                 :pagination="false"
+                 row-key="source"
+                 :row-selection="rowSourceSelection"
+        />
+      </div>
     </a-modal>
+
   </div>
 </template>
 
@@ -493,20 +503,19 @@ const columns = [
   {
     title: '数据源',
     dataIndex: 'source',
-  },
-  {
-    title: '数据源id',
-    dataIndex: 'source_id',
-  },
+  }
 ];
 
 const open = ref<boolean>(false);
 const datasourceList = ref([] as ISource[]);
 const selectedSources = ref("");
+const searchValue = ref("");
+let allSource = [] as ISource[];
 
 const fetchSource = async () => {
   const {data} = await querySourceList("ddl");
   //console.log(data.payload);
+  allSource = data.payload as ISource[];
   datasourceList.value = data.payload as ISource[];
 }
 
@@ -514,9 +523,26 @@ const showSourceBatch = () => {
   open.value = true;
 };
 
-const handleOk = (e: MouseEvent) => {
+const handleSourceSelect = (e: MouseEvent) => {
   console.log(e);
   open.value = false;
+};
+
+const handleSourceSearch = (e: MouseEvent) => {
+  console.log(e);
+  if (searchValue.value.trim() == "") {
+    datasourceList.value = allSource;
+    return
+  }
+
+  let filterSourceList = [];
+  for (let i = 0; i < allSource.length; i++) {
+    let included = allSource[i].source.includes(searchValue.value)
+    if (included) {
+      filterSourceList.push(allSource[i])
+    }
+  }
+  datasourceList.value = filterSourceList;
 };
 
 const onSourceSelectChange = (selectedRowKeys, selectedRows) => {
